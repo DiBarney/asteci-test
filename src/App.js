@@ -1,23 +1,34 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
 
+import Tabla from "./componentes/Tabla";
+
 function App() {
+  const [datos, setDatos] = new useState(null);
+
+  const consultaApi = () => {
+    fetch('https://api.datos.gob.mx/v1/condiciones-atmosfericas?pageSize=10').then((r) => {return r.json()}).then((respuesta) => {
+      setDatos(respuesta.results);
+    });
+  }
+  consultaApi();
+
+  console.log(datos);
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <section className="App-header">
+        <div className='contenedorHeader'>
+          <h1>Condiciones Atmosfericas</h1>
+          <p>By Daniel Garcia 7u7</p>
+        </div>
+
+        <div className='contenedorContenido'>
+          {/* <Tabla datosTabla={} className="miTabla"/> */}
+        </div>
+      </section>
+
+
     </div>
   );
 }
