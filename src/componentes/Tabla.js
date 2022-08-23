@@ -1,8 +1,8 @@
 import React from "react";
 
 export default function Tabla(props){
-    var datosTabla = Array.from(props.datosTabla);
-    console.log(datosTabla);
+    var datosTabla = props.datosTabla;
+
     return (
         <div>
             <table className="tabla">
@@ -19,18 +19,20 @@ export default function Tabla(props){
                     </tr>
                 </thead>
                 <tbody>
-                    {/* {datosTabla.map((iterator) => (
-                        // <tr>
-                        //     <td>{iterator._id}</td>
-                        //     <td>{iterator.cityid}</td>
-                        //     <td>{iterator.name}</td>
-                        //     <td>{iterator.state}</td>
-                        //     <td>{iterator.probabilityofprecip}%</td>
-                        //     <td>{iterator.relativehumidity}</td>
-                        //     <td>{iterator.lastreporttime}</td>
-                        //     <td>{(iterator.probabilityofprecip > 60 || iterator.relativehumidity > 50)?'Llueve':'No llueve'}</td>
-                        // </tr>
-                    ))} */}
+                    {datosTabla.map((iterator) => {
+                        return(
+                            <tr id={iterator._id}>
+                                <td>{iterator._id}</td>
+                                <td>{iterator.cityid}</td>
+                                <td>{iterator.name}</td>
+                                <td>{iterator.state}</td>
+                                <td>{iterator.probabilityofprecip}%</td>
+                                <td>{iterator.relativehumidity}</td>
+                                <td>{iterator.lastreporttime}</td>
+                                <td>{(iterator.probabilityofprecip > 60 || iterator.relativehumidity > 50)?'Llueve':'No llueve'}</td>
+                            </tr>
+                        );
+                    })}
                 </tbody>
             </table>
         </div>
